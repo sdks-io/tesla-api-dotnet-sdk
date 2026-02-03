@@ -81,16 +81,23 @@ https://example.com/oauth/callback?error=access_denied
 After the server receives the code, it can exchange this for an *access token*. The access token is an object containing information for authorizing client requests and refreshing the token itself.
 
 ```csharp
-var authManager = client.Thirdpartytoken;
+var authManager = client.Oauth2;
 
 try
 {
-    OAuthToken token = authManager.FetchToken(authorizationCode);
+    var additionalParams = new Dictionary<string, string>
+    {
+        { "oAuthClientId", "OAuthClientId" },
+        { "oAuthClientSecret", "OAuthClientSecret" }
+    };
+
+    OauthToken token = authManager.FetchToken(additionalParams);
+
     // re-instantiate the client with OAuth token
     client = client.ToBuilder()
-        .ThirdpartytokenCredentials(
-            client.ThirdpartytokenModel.ToBuilder()
-                .OAuthToken(token)
+        .Oauth2Credentials(
+            client.Oauth2Model.ToBuilder()
+                .OauthToken(token)
                 .Build())
         .Build();
 }
@@ -181,6 +188,7 @@ using TeslaFleetManagementApi.Standard.Models;
 using TeslaFleetManagementApi.Standard.Exceptions;
 using TeslaFleetManagementApi.Standard.Authentication;
 using System.Collections.Generic;
+
 namespace OAuthTestApplication
 {
     class Program
@@ -188,20 +196,15 @@ namespace OAuthTestApplication
         static void Main(string[] args)
         {
             TeslaFleetManagementApiClient client = new TeslaFleetManagementApiClient.Builder()
-                .ThirdpartytokenCredentials(
-                    new ThirdpartytokenModel.Builder(
+                .Oauth2Credentials(
+                    new Oauth2Model.Builder(
                         "OAuthClientId",
                         "OAuthClientSecret",
                         "OAuthRedirectUri"
                     )
-                    .OAuthScopes(
-                        new List<OAuthScopeThirdpartytoken>
-                        {
-                            OAuthScopeThirdpartytoken.Openid,
-                            OAuthScopeThirdpartytoken.OfflineAccess,
-                        })
                     .Build())
                 .Build();
+
             try
             {
                 OAuthToken token = LoadTokenFromDatabase();
@@ -209,18 +212,26 @@ namespace OAuthTestApplication
                 // Set the token if it is not set before
                 if (token == null)
                 {
-                    var authManager = client.ThirdpartytokenCredentials;
-                    string authUrl = await authManager.BuildAuthorizationUrl();
+                    var authManager = client.Oauth2Credentials;
+                    string authUrl = authManager.BuildAuthorizationUrl();
                     string authorizationCode = GetAuthorizationCode(authUrl);
-                    token = authManager.FetchToken(authorizationCode);
+
+                    var additionalParams = new Dictionary<string, string>
+                    {
+                        { "oAuthClientId", "OAuthClientId" },
+                        { "oAuthClientSecret", "OAuthClientSecret" }
+                    };
+
+                    token = authManager.FetchToken(authorizationCode, additionalParams);
                 }
 
                 SaveTokenToDatabase(token);
+
                 // re-instantiate the client with OAuth token
                 client = client.ToBuilder()
-                    .ThirdpartytokenCredentials(
-                        client.ThirdpartytokenModel.ToBuilder()
-                            .OAuthToken(token)
+                    .Oauth2Credentials(
+                        client.Oauth2Model.ToBuilder()
+                            .OauthToken(token)
                             .Build())
                     .Build();
             }
@@ -238,13 +249,13 @@ namespace OAuthTestApplication
 
         private static void SaveTokenToDatabase(OAuthToken token)
         {
-            //Save token here
+            // Save token here
         }
 
         private static OAuthToken LoadTokenFromDatabase()
         {
             OAuthToken token = null;
-            //token = Get token here
+            // Get token here
             return token;
         }
     }

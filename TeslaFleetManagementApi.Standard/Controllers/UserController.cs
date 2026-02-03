@@ -23,14 +23,14 @@ namespace TeslaFleetManagementApi.Standard.Controllers
         internal UserController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
-        /// Get custom feature flags for a user EndPoint.
+        /// getCustomFeatureFlagsForAUser EndPoint.
         /// </summary>
         /// <returns>Returns the ApiResponse of Models.BackupResponse response from the API call.</returns>
         public ApiResponse<Models.BackupResponse> GetCustomFeatureFlagsForAUser()
             => CoreHelper.RunTask(GetCustomFeatureFlagsForAUserAsync());
 
         /// <summary>
-        /// Get custom feature flags for a user EndPoint.
+        /// getCustomFeatureFlagsForAUser EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of Models.BackupResponse response from the API call.</returns>
@@ -38,18 +38,21 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.BackupResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/users/feature_config")
-                  .WithAuth("bearerAuth"))
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  ))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get summary of a user's account EndPoint.
+        /// getSummaryOfAUserSAccount EndPoint.
         /// </summary>
         /// <returns>Returns the ApiResponse of Models.MeResponse response from the API call.</returns>
         public ApiResponse<Models.MeResponse> GetSummaryOfAUserSAccount()
             => CoreHelper.RunTask(GetSummaryOfAUserSAccountAsync());
 
         /// <summary>
-        /// Get summary of a user's account EndPoint.
+        /// getSummaryOfAUserSAccount EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of Models.MeResponse response from the API call.</returns>
@@ -57,18 +60,21 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.MeResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/users/me")
-                  .WithAuth("bearerAuth"))
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  ))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get active orders for a user EndPoint.
+        /// getActiveOrdersForAUser EndPoint.
         /// </summary>
         /// <returns>Returns the ApiResponse of Models.OrdersResponse response from the API call.</returns>
         public ApiResponse<Models.OrdersResponse> GetActiveOrdersForAUser()
             => CoreHelper.RunTask(GetActiveOrdersForAUserAsync());
 
         /// <summary>
-        /// Get active orders for a user EndPoint.
+        /// getActiveOrdersForAUser EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of Models.OrdersResponse response from the API call.</returns>
@@ -76,18 +82,21 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.OrdersResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/users/orders")
-                  .WithAuth("bearerAuth"))
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  ))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get user's region and fleet-api base URL EndPoint.
+        /// getUserSRegionAndFleetApiBaseUrl EndPoint.
         /// </summary>
         /// <returns>Returns the ApiResponse of Models.RegionResponse response from the API call.</returns>
         public ApiResponse<Models.RegionResponse> GetUserSRegionAndFleetApiBaseUrl()
             => CoreHelper.RunTask(GetUserSRegionAndFleetApiBaseUrlAsync());
 
         /// <summary>
-        /// Get user's region and fleet-api base URL EndPoint.
+        /// getUserSRegionAndFleetApiBaseUrl EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of Models.RegionResponse response from the API call.</returns>
@@ -95,7 +104,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.RegionResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/users/region")
-                  .WithAuth("bearerAuth"))
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  ))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

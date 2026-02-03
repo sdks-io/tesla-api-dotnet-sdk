@@ -45,10 +45,11 @@ var client = TeslaFleetManagementApiClient.Builder
     "BearerAuthCredentials": {
       "AccessToken": "accessToken",
     },
-    "Oauth2Credentials": {
-      "OauthClientId": "oauthClientId",
-      "OauthClientSecret": "oauthClientSecret",
-      "OauthRedirectUri": "oauthRedirectUri",
+    "ThirdpartytokenCredentials": {
+      "OAuthClientId": "oAuthClientId",
+      "OAuthClientSecret": "oAuthClientSecret",
+      "OAuthRedirectUri": "oAuthRedirectUri",
+      "OAuthScopes": [],
     },
     "LoggingConfig": {
       "LogLevel": "Debug",

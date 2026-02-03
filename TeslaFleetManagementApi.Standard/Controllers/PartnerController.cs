@@ -23,14 +23,14 @@ namespace TeslaFleetManagementApi.Standard.Controllers
         internal PartnerController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
-        /// Get VINs with fleet telemetry errors EndPoint.
+        /// getVinsWithFleetTelemetryErrors EndPoint.
         /// </summary>
         /// <returns>Returns the ApiResponse of Models.BackupResponse response from the API call.</returns>
         public ApiResponse<Models.BackupResponse> GetVinsWithFleetTelemetryErrors()
             => CoreHelper.RunTask(GetVinsWithFleetTelemetryErrorsAsync());
 
         /// <summary>
-        /// Get VINs with fleet telemetry errors EndPoint.
+        /// getVinsWithFleetTelemetryErrors EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of Models.BackupResponse response from the API call.</returns>
@@ -38,18 +38,21 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.BackupResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/partner_accounts/fleet_telemetry_error_vins")
-                  .WithAuth("bearerAuth"))
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  ))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get recent fleet telemetry errors EndPoint.
+        /// getRecentFleetTelemetryErrors EndPoint.
         /// </summary>
         /// <returns>Returns the ApiResponse of Models.FleetTelemetryErrorsResponse response from the API call.</returns>
         public ApiResponse<Models.FleetTelemetryErrorsResponse> GetRecentFleetTelemetryErrors()
             => CoreHelper.RunTask(GetRecentFleetTelemetryErrorsAsync());
 
         /// <summary>
-        /// Get recent fleet telemetry errors EndPoint.
+        /// getRecentFleetTelemetryErrors EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of Models.FleetTelemetryErrorsResponse response from the API call.</returns>
@@ -57,11 +60,14 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.FleetTelemetryErrorsResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/partner_accounts/fleet_telemetry_errors")
-                  .WithAuth("bearerAuth"))
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  ))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get public key for a domain EndPoint.
+        /// getPublicKeyForADomain EndPoint.
         /// </summary>
         /// <param name="domain">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.PublicKeyResponse response from the API call.</returns>
@@ -70,7 +76,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetPublicKeyForADomainAsync(domain));
 
         /// <summary>
-        /// Get public key for a domain EndPoint.
+        /// getPublicKeyForADomain EndPoint.
         /// </summary>
         /// <param name="domain">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -81,13 +87,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.PublicKeyResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/partner_accounts/public_key")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Query(query => query.Setup("domain", domain).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Register a partner account EndPoint.
+        /// registerAPartnerAccount EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.RegisterPartnerResponse response from the API call.</returns>
@@ -96,7 +105,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(RegisterAPartnerAccountAsync(body));
 
         /// <summary>
-        /// Register a partner account EndPoint.
+        /// registerAPartnerAccount EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -107,7 +116,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.RegisterPartnerResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/partner_accounts")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Header(header => header.Setup("Content-Type", "application/json"))))

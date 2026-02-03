@@ -12,17 +12,23 @@ PartnerController partnerController = client.PartnerController;
 
 ## Methods
 
-* [Get VINs With Fleet Telemetry Errors](../../doc/controllers/partner.md#get-vins-with-fleet-telemetry-errors)
+* [Get Vins With Fleet Telemetry Errors](../../doc/controllers/partner.md#get-vins-with-fleet-telemetry-errors)
 * [Get Recent Fleet Telemetry Errors](../../doc/controllers/partner.md#get-recent-fleet-telemetry-errors)
 * [Get Public Key for a Domain](../../doc/controllers/partner.md#get-public-key-for-a-domain)
 * [Register a Partner Account](../../doc/controllers/partner.md#register-a-partner-account)
 
 
-# Get VINs With Fleet Telemetry Errors
+# Get Vins With Fleet Telemetry Errors
 
 ```csharp
 GetVinsWithFleetTelemetryErrorsAsync()
 ```
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -37,7 +43,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -48,6 +53,12 @@ catch (ApiException e)
 ```csharp
 GetRecentFleetTelemetryErrorsAsync()
 ```
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -62,7 +73,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -81,6 +91,12 @@ GetPublicKeyForADomainAsync(
 |  --- | --- | --- | --- |
 | `domain` | `string` | Query, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.PublicKeyResponse](../../doc/models/public-key-response.md).
@@ -95,7 +111,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -113,6 +128,12 @@ RegisterAPartnerAccountAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`RegisterPartnerRequest`](../../doc/models/register-partner-request.md) | Body, Required | - |
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -132,7 +153,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```

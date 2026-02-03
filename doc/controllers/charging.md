@@ -25,6 +25,12 @@ Returns the paginated charging history for the authenticated account.
 GetChargingHistoryAsync()
 ```
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.ChargingHistoryResponse](../../doc/models/charging-history-response.md).
@@ -38,7 +44,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -59,6 +64,12 @@ GetChargingInvoiceAsync(
 |  --- | --- | --- | --- |
 | `id` | `string` | Template, Required | Charging session invoice identifier |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type dynamic.
@@ -73,7 +84,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -86,6 +96,12 @@ Returns charging session information. Only available for business fleet owners.
 ```csharp
 GetChargingSessionsAsync()
 ```
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -100,7 +116,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```

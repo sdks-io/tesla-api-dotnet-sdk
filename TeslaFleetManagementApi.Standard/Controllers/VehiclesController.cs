@@ -24,14 +24,14 @@ namespace TeslaFleetManagementApi.Standard.Controllers
         internal VehiclesController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
-        /// List vehicles EndPoint.
+        /// listVehicles EndPoint.
         /// </summary>
         /// <returns>Returns the ApiResponse of Models.Api1VehiclesResponse response from the API call.</returns>
         public ApiResponse<Models.Api1VehiclesResponse> ListVehicles()
             => CoreHelper.RunTask(ListVehiclesAsync());
 
         /// <summary>
-        /// List vehicles EndPoint.
+        /// listVehicles EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of Models.Api1VehiclesResponse response from the API call.</returns>
@@ -39,11 +39,14 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.Api1VehiclesResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/vehicles")
-                  .WithAuth("bearerAuth"))
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  ))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get vehicle EndPoint.
+        /// getVehicle EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.Api1VehiclesResponseGetVehicle response from the API call.</returns>
@@ -52,7 +55,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetVehicleAsync(vehicleTag));
 
         /// <summary>
-        /// Get vehicle EndPoint.
+        /// getVehicle EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -63,13 +66,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.Api1VehiclesResponseGetVehicle>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/vehicles/{vehicle_tag}")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Mobile enabled EndPoint.
+        /// mobileEnabled EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.Api1VehiclesMobileEnabledResponse response from the API call.</returns>
@@ -78,7 +84,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(MobileEnabledAsync(vehicleTag));
 
         /// <summary>
-        /// Mobile enabled EndPoint.
+        /// mobileEnabled EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -89,13 +95,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.Api1VehiclesMobileEnabledResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/vehicles/{vehicle_tag}/mobile_enabled")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Nearby charging sites EndPoint.
+        /// nearbyChargingSites EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.Api1VehiclesNearbyChargingSitesResponse response from the API call.</returns>
@@ -104,7 +113,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(NearbyChargingSitesAsync(vehicleTag));
 
         /// <summary>
-        /// Nearby charging sites EndPoint.
+        /// nearbyChargingSites EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -115,13 +124,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.Api1VehiclesNearbyChargingSitesResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/vehicles/{vehicle_tag}/nearby_charging_sites")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Vehicle live data EndPoint.
+        /// vehicleLiveData EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.SiteInfoResponse response from the API call.</returns>
@@ -130,7 +142,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(VehicleLiveDataAsync(vehicleTag));
 
         /// <summary>
-        /// Vehicle live data EndPoint.
+        /// vehicleLiveData EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -141,13 +153,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.SiteInfoResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/vehicles/{vehicle_tag}/vehicle_data")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Wake up vehicle EndPoint.
+        /// wakeUpVehicle EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.Api1VehiclesWakeUpResponse response from the API call.</returns>
@@ -156,7 +171,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(WakeUpVehicleAsync(vehicleTag));
 
         /// <summary>
-        /// Wake up vehicle EndPoint.
+        /// wakeUpVehicle EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -167,13 +182,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.Api1VehiclesWakeUpResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/wake_up")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Vehicle specs EndPoint.
+        /// vehicleSpecs EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.SiteInfoResponse response from the API call.</returns>
@@ -182,7 +200,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(VehicleSpecsAsync(vin));
 
         /// <summary>
-        /// Vehicle specs EndPoint.
+        /// vehicleSpecs EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -193,13 +211,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.SiteInfoResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/vehicles/{vin}/specs")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vin", vin).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Vehicle options EndPoint.
+        /// vehicleOptions EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.Api1DxVehiclesOptionsResponse response from the API call.</returns>
@@ -208,7 +229,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(VehicleOptionsAsync(vin));
 
         /// <summary>
-        /// Vehicle options EndPoint.
+        /// vehicleOptions EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -219,20 +240,23 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.Api1DxVehiclesOptionsResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/dx/vehicles/options")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Query(query => query.Setup("vin", vin).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Warranty details EndPoint.
+        /// warrantyDetails EndPoint.
         /// </summary>
         /// <returns>Returns the ApiResponse of Models.Api1DxWarrantyDetailsResponse response from the API call.</returns>
         public ApiResponse<Models.Api1DxWarrantyDetailsResponse> WarrantyDetails()
             => CoreHelper.RunTask(WarrantyDetailsAsync());
 
         /// <summary>
-        /// Warranty details EndPoint.
+        /// warrantyDetails EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of Models.Api1DxWarrantyDetailsResponse response from the API call.</returns>
@@ -240,11 +264,14 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.Api1DxWarrantyDetailsResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/dx/warranty/details")
-                  .WithAuth("bearerAuth"))
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  ))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get allowed drivers for a vehicle EndPoint.
+        /// getAllowedDriversForAVehicle EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.DriversResponse response from the API call.</returns>
@@ -253,7 +280,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetAllowedDriversForAVehicleAsync(vehicleTag));
 
         /// <summary>
-        /// Get allowed drivers for a vehicle EndPoint.
+        /// getAllowedDriversForAVehicle EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -264,13 +291,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.DriversResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/vehicles/{vehicle_tag}/drivers")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Remove driver access from a vehicle EndPoint.
+        /// removeDriverAccessFromAVehicle EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.SimpleOkResponse response from the API call.</returns>
@@ -279,7 +309,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(RemoveDriverAccessFromAVehicleAsync(vehicleTag));
 
         /// <summary>
-        /// Remove driver access from a vehicle EndPoint.
+        /// removeDriverAccessFromAVehicle EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -290,13 +320,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.SimpleOkResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Delete, "/api/1/vehicles/{vehicle_tag}/drivers")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get eligible vehicle subscriptions EndPoint.
+        /// getEligibleVehicleSubscriptions EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.SiteInfoResponse response from the API call.</returns>
@@ -305,7 +338,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetEligibleVehicleSubscriptionsAsync(vin));
 
         /// <summary>
-        /// Get eligible vehicle subscriptions EndPoint.
+        /// getEligibleVehicleSubscriptions EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -316,13 +349,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.SiteInfoResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/dx/vehicles/subscriptions/eligibility")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Query(query => query.Setup("vin", vin).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get eligible vehicle upgrades EndPoint.
+        /// getEligibleVehicleUpgrades EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.SiteInfoResponse response from the API call.</returns>
@@ -331,7 +367,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetEligibleVehicleUpgradesAsync(vin));
 
         /// <summary>
-        /// Get eligible vehicle upgrades EndPoint.
+        /// getEligibleVehicleUpgrades EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -342,13 +378,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.SiteInfoResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/dx/vehicles/upgrades/eligibility")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Query(query => query.Setup("vin", vin).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Set enterprise payer roles EndPoint.
+        /// setEnterprisePayerRoles EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -358,7 +397,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunVoidTask(SetEnterprisePayerRolesAsync(vin, body));
 
         /// <summary>
-        /// Set enterprise payer roles EndPoint.
+        /// setEnterprisePayerRoles EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -371,7 +410,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<VoidType>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/dx/enterprise/v1/{vin}/payer")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("vin", vin).Required())
@@ -379,7 +421,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get enterprise roles for a vehicle EndPoint.
+        /// getEnterpriseRolesForAVehicle EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of object response from the API call.</returns>
@@ -388,7 +430,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetEnterpriseRolesForAVehicleAsync(vin));
 
         /// <summary>
-        /// Get enterprise roles for a vehicle EndPoint.
+        /// getEnterpriseRolesForAVehicle EndPoint.
         /// </summary>
         /// <param name="vin">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -399,7 +441,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<object>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/dx/enterprise/v1/{vin}/roles")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vin", vin).Required())))
               .ResponseHandler(responseHandler => responseHandler
@@ -407,7 +452,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get fleet status for vehicles EndPoint.
+        /// getFleetStatusForVehicles EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of object response from the API call.</returns>
@@ -416,7 +461,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetFleetStatusForVehiclesAsync(body));
 
         /// <summary>
-        /// Get fleet status for vehicles EndPoint.
+        /// getFleetStatusForVehicles EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -427,7 +472,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<object>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/fleet_status")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Header(header => header.Setup("Content-Type", "application/json"))))
@@ -436,7 +484,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Create or update fleet telemetry configuration EndPoint.
+        /// createOrUpdateFleetTelemetryConfiguration EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of object response from the API call.</returns>
@@ -445,7 +493,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(CreateOrUpdateFleetTelemetryConfigurationAsync(body));
 
         /// <summary>
-        /// Create or update fleet telemetry configuration EndPoint.
+        /// createOrUpdateFleetTelemetryConfiguration EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -456,7 +504,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<object>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/fleet_telemetry_config")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Header(header => header.Setup("Content-Type", "application/json"))))
@@ -465,7 +516,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get fleet telemetry configuration EndPoint.
+        /// getFleetTelemetryConfiguration EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of object response from the API call.</returns>
@@ -474,7 +525,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetFleetTelemetryConfigurationAsync(vehicleTag));
 
         /// <summary>
-        /// Get fleet telemetry configuration EndPoint.
+        /// getFleetTelemetryConfiguration EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -485,7 +536,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<object>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/vehicles/{vehicle_tag}/fleet_telemetry_config")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ResponseHandler(responseHandler => responseHandler
@@ -493,7 +547,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Delete fleet telemetry configuration EndPoint.
+        /// deleteFleetTelemetryConfiguration EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of object response from the API call.</returns>
@@ -502,7 +556,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(DeleteFleetTelemetryConfigurationAsync(vehicleTag));
 
         /// <summary>
-        /// Delete fleet telemetry configuration EndPoint.
+        /// deleteFleetTelemetryConfiguration EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -513,7 +567,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<object>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Delete, "/api/1/vehicles/{vehicle_tag}/fleet_telemetry_config")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ResponseHandler(responseHandler => responseHandler
@@ -521,7 +578,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Configure fleet telemetry using signed JWS token EndPoint.
+        /// configureFleetTelemetryUsingSignedJwsToken EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of object response from the API call.</returns>
@@ -530,7 +587,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(ConfigureFleetTelemetryUsingSignedJwsTokenAsync(body));
 
         /// <summary>
-        /// Configure fleet telemetry using signed JWS token EndPoint.
+        /// configureFleetTelemetryUsingSignedJwsToken EndPoint.
         /// </summary>
         /// <param name="body">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -541,7 +598,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<object>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/fleet_telemetry_config_jws")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Header(header => header.Setup("Content-Type", "application/json"))))
@@ -550,7 +610,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get fleet telemetry errors for a vehicle EndPoint.
+        /// getFleetTelemetryErrorsForAVehicle EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of object response from the API call.</returns>
@@ -559,7 +619,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetFleetTelemetryErrorsForAVehicleAsync(vehicleTag));
 
         /// <summary>
-        /// Get fleet telemetry errors for a vehicle EndPoint.
+        /// getFleetTelemetryErrorsForAVehicle EndPoint.
         /// </summary>
         /// <param name="vehicleTag">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -570,7 +630,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<object>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/vehicles/{vehicle_tag}/fleet_telemetry_errors")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ResponseHandler(responseHandler => responseHandler

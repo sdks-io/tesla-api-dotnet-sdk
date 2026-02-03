@@ -18,9 +18,9 @@ EnergyController energyController = client.EnergyController;
 * [Get Live Site Status](../../doc/controllers/energy.md#get-live-site-status)
 * [Set Site Mode Autonomous or Self Consumption](../../doc/controllers/energy.md#set-site-mode-autonomous-or-self-consumption)
 * [Allow Disallow Charging From the Grid and Exporting Energy to the Grid](../../doc/controllers/energy.md#allow-disallow-charging-from-the-grid-and-exporting-energy-to-the-grid)
-* [Adjust Site S Off-Grid Vehicle Charging Reserve](../../doc/controllers/energy.md#adjust-site-s-off-grid-vehicle-charging-reserve)
+* [Adjust Site S Off Grid Vehicle Charging Reserve](../../doc/controllers/energy.md#adjust-site-s-off-grid-vehicle-charging-reserve)
 * [Update Storm Watch Participation](../../doc/controllers/energy.md#update-storm-watch-participation)
-* [Update Time-of-Use TOU Settings](../../doc/controllers/energy.md#update-time-of-use-tou-settings)
+* [Update Time of Use Tou Settings](../../doc/controllers/energy.md#update-time-of-use-tou-settings)
 * [Get User Products Vehicles Energy Sites](../../doc/controllers/energy.md#get-user-products-vehicles-energy-sites)
 * [Get Site Information Assets Settings Features](../../doc/controllers/energy.md#get-site-information-assets-settings-features)
 
@@ -39,6 +39,12 @@ AdjustSiteSBackupReserveAsync(
 |  --- | --- | --- | --- |
 | `energySiteId` | `string` | Template, Required | - |
 | `body` | [`BackupRequest`](../../doc/models/backup-request.md) | Body, Required | - |
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -62,7 +68,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -91,6 +96,12 @@ GetBackupOrEnergyHistoryAsync(
 | `period` | `string` | Query, Optional | - |
 | `timeZone` | `string` | Query, Optional | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.CalendarHistoryResponse](../../doc/models/calendar-history-response.md).
@@ -117,7 +128,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -143,6 +153,12 @@ GetWallConnectorChargingHistoryAsync(
 | `startDate` | `DateTime` | Query, Required | - |
 | `endDate` | `DateTime` | Query, Required | - |
 | `timeZone` | `string` | Query, Optional | - |
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -170,7 +186,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -189,6 +204,12 @@ GetLiveSiteStatusAsync(
 |  --- | --- | --- | --- |
 | `energySiteId` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.LiveStatusResponse](../../doc/models/live-status-response.md).
@@ -203,7 +224,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -223,6 +243,12 @@ SetSiteModeAutonomousOrSelfConsumptionAsync(
 |  --- | --- | --- | --- |
 | `energySiteId` | `string` | Template, Required | - |
 | `body` | [`OperationRequest`](../../doc/models/operation-request.md) | Body, Required | - |
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -246,7 +272,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -267,6 +292,12 @@ AllowDisallowChargingFromTheGridAndExportingEnergyToTheGridAsync(
 | `energySiteId` | `string` | Template, Required | - |
 | `body` | `object` | Body, Optional | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.GenericUpdateResponse](../../doc/models/generic-update-response.md).
@@ -281,13 +312,12 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
 
 
-# Adjust Site S Off-Grid Vehicle Charging Reserve
+# Adjust Site S Off Grid Vehicle Charging Reserve
 
 ```csharp
 AdjustSiteSOffGridVehicleChargingReserveAsync(
@@ -301,6 +331,12 @@ AdjustSiteSOffGridVehicleChargingReserveAsync(
 |  --- | --- | --- | --- |
 | `energySiteId` | `string` | Template, Required | - |
 | `body` | [`OffGridVehicleChargingReserveRequest`](../../doc/models/off-grid-vehicle-charging-reserve-request.md) | Body, Required | - |
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -324,7 +360,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -344,6 +379,12 @@ UpdateStormWatchParticipationAsync(
 |  --- | --- | --- | --- |
 | `energySiteId` | `string` | Template, Required | - |
 | `body` | [`StormModeRequest`](../../doc/models/storm-mode-request.md) | Body, Required | - |
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -367,13 +408,12 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
 
 
-# Update Time-of-Use TOU Settings
+# Update Time of Use Tou Settings
 
 ```csharp
 UpdateTimeOfUseTouSettingsAsync(
@@ -387,6 +427,12 @@ UpdateTimeOfUseTouSettingsAsync(
 |  --- | --- | --- | --- |
 | `energySiteId` | `string` | Template, Required | - |
 | `body` | [`TimeOfUseSettingsRequest`](../../doc/models/time-of-use-settings-request.md) | Body, Required | - |
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -412,7 +458,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -423,6 +468,12 @@ catch (ApiException e)
 ```csharp
 GetUserProductsVehiclesEnergySitesAsync()
 ```
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -437,7 +488,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -456,6 +506,12 @@ GetSiteInformationAssetsSettingsFeaturesAsync(
 |  --- | --- | --- | --- |
 | `energySiteId` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.SiteInfoResponse](../../doc/models/site-info-response.md).
@@ -470,7 +526,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```

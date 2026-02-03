@@ -15,7 +15,7 @@ UserController userController = client.UserController;
 * [Get Custom Feature Flags for a User](../../doc/controllers/user.md#get-custom-feature-flags-for-a-user)
 * [Get Summary of a User S Account](../../doc/controllers/user.md#get-summary-of-a-user-s-account)
 * [Get Active Orders for a User](../../doc/controllers/user.md#get-active-orders-for-a-user)
-* [Get User S Region and Fleet-Api Base URL](../../doc/controllers/user.md#get-user-s-region-and-fleet-api-base-url)
+* [Get User S Region and Fleet Api Base Url](../../doc/controllers/user.md#get-user-s-region-and-fleet-api-base-url)
 
 
 # Get Custom Feature Flags for a User
@@ -23,6 +23,12 @@ UserController userController = client.UserController;
 ```csharp
 GetCustomFeatureFlagsForAUserAsync()
 ```
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -37,7 +43,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -48,6 +53,12 @@ catch (ApiException e)
 ```csharp
 GetSummaryOfAUserSAccountAsync()
 ```
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -62,7 +73,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -73,6 +83,12 @@ catch (ApiException e)
 ```csharp
 GetActiveOrdersForAUserAsync()
 ```
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -87,17 +103,22 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
 
 
-# Get User S Region and Fleet-Api Base URL
+# Get User S Region and Fleet Api Base Url
 
 ```csharp
 GetUserSRegionAndFleetApiBaseUrlAsync()
 ```
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -112,7 +133,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```

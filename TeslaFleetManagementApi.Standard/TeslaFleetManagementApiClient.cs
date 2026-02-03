@@ -38,19 +38,20 @@ namespace TeslaFleetManagementApi.Standard
 
         private readonly GlobalConfiguration globalConfiguration;
         private SdkLoggingConfiguration sdkLoggingConfiguration;
-        private const string userAgent = "DotNet SDK, Version: 1.0.1, on OS {os-info}";
+        private const string userAgent = "DotNet SDK, Version: 1.0.3, on OS {os-info}";
         private readonly HttpCallback httpCallback;
         private readonly Lazy<ChargingController> charging;
         private readonly Lazy<EnergyController> energy;
         private readonly Lazy<PartnerController> partner;
         private readonly Lazy<UserController> user;
         private readonly Lazy<VehiclesController> vehicles;
-        private readonly Lazy<OauthAuthorizationController> oauthAuthorization;
+        private readonly Lazy<VehicleCommandsController> vehicleCommands;
+        private readonly Lazy<OAuthAuthorizationController> oAuthAuthorization;
 
         private TeslaFleetManagementApiClient(
             Environment environment,
             BearerAuthModel bearerAuthModel,
-            Oauth2Model oauth2Model,
+            ThirdpartytokenModel thirdpartytokenModel,
             HttpCallback httpCallback,
             IHttpClientConfiguration httpClientConfiguration,
             SdkLoggingConfiguration sdkLoggingConfiguration)
@@ -61,14 +62,14 @@ namespace TeslaFleetManagementApi.Standard
             this.sdkLoggingConfiguration = sdkLoggingConfiguration;
             BearerAuthModel = bearerAuthModel;
             var bearerAuthManager = new BearerAuthManager(bearerAuthModel);
-            Oauth2Model = oauth2Model;
-            var oauth2Manager = new Oauth2Manager(oauth2Model,
+            ThirdpartytokenModel = thirdpartytokenModel;
+            var thirdpartytokenManager = new ThirdpartytokenManager(thirdpartytokenModel,
                 () => globalConfiguration,
-                () => OauthAuthorizationController);
+                () => OAuthAuthorizationController);
             globalConfiguration = new GlobalConfiguration.Builder()
                 .AuthManagers(new Dictionary<string, AuthManager> {
                     {"bearerAuth", bearerAuthManager},
-                    {"oauth2", oauth2Manager},
+                    {"thirdpartytoken", thirdpartytokenManager},
                 })
                 .ApiCallback(httpCallback)
                 .HttpConfiguration(httpClientConfiguration)
@@ -77,7 +78,7 @@ namespace TeslaFleetManagementApi.Standard
                 .UserAgent(userAgent)
                 .Build();
             BearerAuthCredentials = bearerAuthManager;
-            Oauth2Credentials = oauth2Manager;
+            ThirdpartytokenCredentials = thirdpartytokenManager;
 
             this.charging = new Lazy<ChargingController>(
                 () => new ChargingController(globalConfiguration));
@@ -89,8 +90,10 @@ namespace TeslaFleetManagementApi.Standard
                 () => new UserController(globalConfiguration));
             this.vehicles = new Lazy<VehiclesController>(
                 () => new VehiclesController(globalConfiguration));
-            this.oauthAuthorization = new Lazy<OauthAuthorizationController>(
-                () => new OauthAuthorizationController(globalConfiguration));
+            this.vehicleCommands = new Lazy<VehicleCommandsController>(
+                () => new VehicleCommandsController(globalConfiguration));
+            this.oAuthAuthorization = new Lazy<OAuthAuthorizationController>(
+                () => new OAuthAuthorizationController(globalConfiguration));
         }
 
         /// <summary>
@@ -119,9 +122,14 @@ namespace TeslaFleetManagementApi.Standard
         public VehiclesController VehiclesController => this.vehicles.Value;
 
         /// <summary>
-        /// Gets OauthAuthorizationController controller.
+        /// Gets VehicleCommandsController controller.
         /// </summary>
-        public OauthAuthorizationController OauthAuthorizationController => this.oauthAuthorization.Value;
+        public VehicleCommandsController VehicleCommandsController => this.vehicleCommands.Value;
+
+        /// <summary>
+        /// Gets OAuthAuthorizationController controller.
+        /// </summary>
+        public OAuthAuthorizationController OAuthAuthorizationController => this.oAuthAuthorization.Value;
 
         /// <summary>
         /// Gets the configuration of the Http Client associated with this client.
@@ -155,14 +163,14 @@ namespace TeslaFleetManagementApi.Standard
         public string AccessToken => this.BearerAuthCredentials.AccessToken;
 
         /// <summary>
-        /// Gets the credentials to use with Oauth2.
+        /// Gets the credentials to use with Thirdpartytoken.
         /// </summary>
-        public IOauth2Credentials Oauth2Credentials { get; private set; }
+        public IThirdpartytokenCredentials ThirdpartytokenCredentials { get; private set; }
 
         /// <summary>
-        /// Gets the credentials model to use with Oauth2.
+        /// Gets the credentials model to use with Thirdpartytoken.
         /// </summary>
-        public Oauth2Model Oauth2Model { get; private set; }
+        public ThirdpartytokenModel ThirdpartytokenModel { get; private set; }
 
         /// <summary>
         /// Gets the URL for a particular alias in the current environment and appends
@@ -192,9 +200,9 @@ namespace TeslaFleetManagementApi.Standard
                 builder.BearerAuthCredentials(BearerAuthModel.ToBuilder().Build());
             }
 
-            if (Oauth2Model != null)
+            if (ThirdpartytokenModel != null)
             {
-                builder.Oauth2Credentials(Oauth2Model.ToBuilder().Build());
+                builder.ThirdpartytokenCredentials(ThirdpartytokenModel.ToBuilder().Build());
             }
 
             return builder;
@@ -218,9 +226,9 @@ namespace TeslaFleetManagementApi.Standard
 
             string environment = System.Environment.GetEnvironmentVariable("TESLA_FLEET_MANAGEMENT_API_STANDARD_ENVIRONMENT");
             string accessToken = System.Environment.GetEnvironmentVariable("TESLA_FLEET_MANAGEMENT_API_STANDARD_ACCESS_TOKEN");
-            string oauthClientId = System.Environment.GetEnvironmentVariable("TESLA_FLEET_MANAGEMENT_API_STANDARD_OAUTH_CLIENT_ID");
-            string oauthClientSecret = System.Environment.GetEnvironmentVariable("TESLA_FLEET_MANAGEMENT_API_STANDARD_OAUTH_CLIENT_SECRET");
-            string oauthRedirectUri = System.Environment.GetEnvironmentVariable("TESLA_FLEET_MANAGEMENT_API_STANDARD_OAUTH_REDIRECT_URI");
+            string oAuthClientId = System.Environment.GetEnvironmentVariable("TESLA_FLEET_MANAGEMENT_API_STANDARD_O_AUTH_CLIENT_ID");
+            string oAuthClientSecret = System.Environment.GetEnvironmentVariable("TESLA_FLEET_MANAGEMENT_API_STANDARD_O_AUTH_CLIENT_SECRET");
+            string oAuthRedirectUri = System.Environment.GetEnvironmentVariable("TESLA_FLEET_MANAGEMENT_API_STANDARD_O_AUTH_REDIRECT_URI");
 
             if (environment != null)
             {
@@ -234,10 +242,10 @@ namespace TeslaFleetManagementApi.Standard
                 .Build());
             }
 
-            if (oauthClientId != null && oauthClientSecret != null && oauthRedirectUri != null)
+            if (oAuthClientId != null && oAuthClientSecret != null && oAuthRedirectUri != null)
             {
-                builder.Oauth2Credentials(new Oauth2Model
-                .Builder(oauthClientId, oauthClientSecret, oauthRedirectUri)
+                builder.ThirdpartytokenCredentials(new ThirdpartytokenModel
+                .Builder(oAuthClientId, oAuthClientSecret, oAuthRedirectUri)
                 .Build());
             }
 
@@ -258,7 +266,7 @@ namespace TeslaFleetManagementApi.Standard
         {
             private Environment _environment = TeslaFleetManagementApi.Standard.Environment.Production;
             private BearerAuthModel _bearerAuthModel = new BearerAuthModel();
-            private Oauth2Model _oauth2Model = new Oauth2Model();
+            private ThirdpartytokenModel _thirdpartytokenModel = new ThirdpartytokenModel();
             private HttpClientConfiguration.Builder _httpClientConfig = new HttpClientConfiguration.Builder();
             private HttpCallback _httpCallback;
             private SdkLoggingConfiguration _sdkLoggingConfiguration;
@@ -276,14 +284,14 @@ namespace TeslaFleetManagementApi.Standard
             }
 
             /// <summary>
-            /// Sets credentials for Oauth2.
+            /// Sets credentials for Thirdpartytoken.
             /// </summary>
-            /// <param name="oauth2Model">Oauth2Model.</param>
+            /// <param name="thirdpartytokenModel">ThirdpartytokenModel.</param>
             /// <returns>Builder.</returns>
-            public Builder Oauth2Credentials(Oauth2Model oauth2Model)
+            public Builder ThirdpartytokenCredentials(ThirdpartytokenModel thirdpartytokenModel)
             {
-                _oauth2Model = oauth2Model ??
-                    throw new ArgumentNullException(nameof(oauth2Model));
+                _thirdpartytokenModel = thirdpartytokenModel ??
+                    throw new ArgumentNullException(nameof(thirdpartytokenModel));
                 return this;
             }
 
@@ -377,14 +385,14 @@ namespace TeslaFleetManagementApi.Standard
                 {
                     _bearerAuthModel = null;
                 }
-                if (_oauth2Model.OauthClientId == null || _oauth2Model.OauthClientSecret == null || _oauth2Model.OauthRedirectUri == null)
+                if (_thirdpartytokenModel.OAuthClientId == null || _thirdpartytokenModel.OAuthClientSecret == null || _thirdpartytokenModel.OAuthRedirectUri == null)
                 {
-                    _oauth2Model = null;
+                    _thirdpartytokenModel = null;
                 }
                 return new TeslaFleetManagementApiClient(
                     _environment,
                     _bearerAuthModel,
-                    _oauth2Model,
+                    _thirdpartytokenModel,
                     _httpCallback,
                     _httpClientConfig.Build(),
                     _sdkLoggingConfiguration);
@@ -403,8 +411,8 @@ namespace TeslaFleetManagementApi.Standard
                     builder.Environment(options.Environment.Value);
                 if (options.BearerAuthCredentials != null)
                     builder.BearerAuthCredentials(BearerAuthModel.FromOptions(options.BearerAuthCredentials));
-                if (options.Oauth2Credentials != null)
-                    builder.Oauth2Credentials(Oauth2Model.FromOptions(options.Oauth2Credentials));
+                if (options.ThirdpartytokenCredentials != null)
+                    builder.ThirdpartytokenCredentials(ThirdpartytokenModel.FromOptions(options.ThirdpartytokenCredentials));
                 if (options.HttpClientConfig != null)
                     builder.HttpClientConfig(Http.Client.HttpClientConfiguration.FromOptions(options.HttpClientConfig));
                 if (options.LoggingConfig != null)
@@ -417,7 +425,7 @@ namespace TeslaFleetManagementApi.Standard
         {
             public Environment? Environment { get; set; }
             public BearerAuthModelOptions BearerAuthCredentials { get; set; }
-            public Oauth2ModelOptions Oauth2Credentials { get; set; }
+            public ThirdpartytokenModelOptions ThirdpartytokenCredentials { get; set; }
             public HttpClientConfigurationOptions HttpClientConfig { get; set; }
             public LoggingConfigOptions LoggingConfig { get; set; }
         }

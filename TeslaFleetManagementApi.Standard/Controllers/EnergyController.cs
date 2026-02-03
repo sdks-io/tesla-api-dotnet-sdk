@@ -24,7 +24,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
         internal EnergyController(GlobalConfiguration globalConfiguration) : base(globalConfiguration) { }
 
         /// <summary>
-        /// Adjust site's backup reserve EndPoint.
+        /// adjustSiteSBackupReserve EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -35,7 +35,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(AdjustSiteSBackupReserveAsync(energySiteId, body));
 
         /// <summary>
-        /// Adjust site's backup reserve EndPoint.
+        /// adjustSiteSBackupReserve EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -48,7 +48,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.BackupResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/backup")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -56,7 +59,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get backup or energy history EndPoint.
+        /// getBackupOrEnergyHistory EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="kind">Required parameter: Example: .</param>
@@ -75,7 +78,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetBackupOrEnergyHistoryAsync(energySiteId, kind, startDate, endDate, period, timeZone));
 
         /// <summary>
-        /// Get backup or energy history EndPoint.
+        /// getBackupOrEnergyHistory EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="kind">Required parameter: Example: .</param>
@@ -96,7 +99,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CalendarHistoryResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/energy_sites/{energy_site_id}/calendar_history")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
                       .Query(query => query.Setup("kind", CoreHelper.JsonSerialize(kind).Trim('\"')))
@@ -107,7 +113,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get wall connector charging history EndPoint.
+        /// getWallConnectorChargingHistory EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="kind">Required parameter: Example: .</param>
@@ -124,7 +130,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetWallConnectorChargingHistoryAsync(energySiteId, kind, startDate, endDate, timeZone));
 
         /// <summary>
-        /// Get wall connector charging history EndPoint.
+        /// getWallConnectorChargingHistory EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="kind">Required parameter: Example: .</param>
@@ -143,7 +149,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.ChargeHistoryResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/energy_sites/{energy_site_id}/telemetry_history")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
                       .Query(query => query.Setup("kind", CoreHelper.JsonSerialize(kind).Trim('\"')))
@@ -153,7 +162,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get live site status EndPoint.
+        /// getLiveSiteStatus EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.LiveStatusResponse response from the API call.</returns>
@@ -162,7 +171,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetLiveSiteStatusAsync(energySiteId));
 
         /// <summary>
-        /// Get live site status EndPoint.
+        /// getLiveSiteStatus EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -173,13 +182,16 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.LiveStatusResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/energy_sites/{energy_site_id}/live_status")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Set site mode (autonomous or self_consumption) EndPoint.
+        /// setSiteModeAutonomousOrSelfConsumption EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -190,7 +202,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(SetSiteModeAutonomousOrSelfConsumptionAsync(energySiteId, body));
 
         /// <summary>
-        /// Set site mode (autonomous or self_consumption) EndPoint.
+        /// setSiteModeAutonomousOrSelfConsumption EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -203,7 +215,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.GenericUpdateResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/operation")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -211,7 +226,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Allow/disallow charging from the grid and exporting energy to the grid EndPoint.
+        /// allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Optional parameter: .</param>
@@ -222,7 +237,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(AllowDisallowChargingFromTheGridAndExportingEnergyToTheGridAsync(energySiteId, body));
 
         /// <summary>
-        /// Allow/disallow charging from the grid and exporting energy to the grid EndPoint.
+        /// allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Optional parameter: .</param>
@@ -235,7 +250,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.GenericUpdateResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/grid_import_export")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body))
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -243,7 +261,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Adjust site's off-grid vehicle charging reserve EndPoint.
+        /// adjustSiteSOffGridVehicleChargingReserve EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -254,7 +272,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(AdjustSiteSOffGridVehicleChargingReserveAsync(energySiteId, body));
 
         /// <summary>
-        /// Adjust site's off-grid vehicle charging reserve EndPoint.
+        /// adjustSiteSOffGridVehicleChargingReserve EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -267,7 +285,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.GenericUpdateResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/off_grid_vehicle_charging_reserve")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -275,7 +296,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Update storm watch participation EndPoint.
+        /// updateStormWatchParticipation EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -286,7 +307,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(UpdateStormWatchParticipationAsync(energySiteId, body));
 
         /// <summary>
-        /// Update storm watch participation EndPoint.
+        /// updateStormWatchParticipation EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -299,7 +320,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.GenericUpdateResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/storm_mode")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -307,7 +331,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Update Time-of-Use (TOU) settings EndPoint.
+        /// updateTimeOfUseTouSettings EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -318,7 +342,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(UpdateTimeOfUseTouSettingsAsync(energySiteId, body));
 
         /// <summary>
-        /// Update Time-of-Use (TOU) settings EndPoint.
+        /// updateTimeOfUseTouSettings EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="body">Required parameter: .</param>
@@ -331,7 +355,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.GenericUpdateResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/time_of_use_settings")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -339,14 +366,14 @@ namespace TeslaFleetManagementApi.Standard.Controllers
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get user products (vehicles, energy sites) EndPoint.
+        /// getUserProductsVehiclesEnergySites EndPoint.
         /// </summary>
         /// <returns>Returns the ApiResponse of Models.ProductsResponse response from the API call.</returns>
         public ApiResponse<Models.ProductsResponse> GetUserProductsVehiclesEnergySites()
             => CoreHelper.RunTask(GetUserProductsVehiclesEnergySitesAsync());
 
         /// <summary>
-        /// Get user products (vehicles, energy sites) EndPoint.
+        /// getUserProductsVehiclesEnergySites EndPoint.
         /// </summary>
         /// <param name="cancellationToken"> cancellationToken. </param>
         /// <returns>Returns the ApiResponse of Models.ProductsResponse response from the API call.</returns>
@@ -354,11 +381,14 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.ProductsResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/products")
-                  .WithAuth("bearerAuth"))
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  ))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
-        /// Get site information (assets, settings, features) EndPoint.
+        /// getSiteInformationAssetsSettingsFeatures EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <returns>Returns the ApiResponse of Models.SiteInfoResponse response from the API call.</returns>
@@ -367,7 +397,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => CoreHelper.RunTask(GetSiteInformationAssetsSettingsFeaturesAsync(energySiteId));
 
         /// <summary>
-        /// Get site information (assets, settings, features) EndPoint.
+        /// getSiteInformationAssetsSettingsFeatures EndPoint.
         /// </summary>
         /// <param name="energySiteId">Required parameter: .</param>
         /// <param name="cancellationToken"> cancellationToken. </param>
@@ -378,7 +408,10 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.SiteInfoResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/energy_sites/{energy_site_id}/site_info")
-                  .WithAuth("bearerAuth")
+                  .WithOrAuth(orAuth => orAuth
+                      .Add("thirdpartytoken")
+                      .Add("bearerAuth")
+                  )
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);

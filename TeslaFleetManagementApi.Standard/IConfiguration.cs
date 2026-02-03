@@ -18,14 +18,14 @@ namespace TeslaFleetManagementApi.Standard
         Environment Environment { get; }
 
         /// <summary>
-        /// Gets the credentials to use with Oauth2.
+        /// Gets the credentials to use with Thirdpartytoken.
         /// </summary>
-        IOauth2Credentials Oauth2Credentials { get; }
+        IThirdpartytokenCredentials ThirdpartytokenCredentials { get; }
 
         /// <summary>
-        /// Gets the credentials model to use with Oauth2.
+        /// Gets the credentials model to use with Thirdpartytoken.
         /// </summary>
-        Oauth2Model Oauth2Model { get; }
+        ThirdpartytokenModel ThirdpartytokenModel { get; }
 
         /// <summary>
         /// Gets the URL for a particular alias in the current environment and appends it with template parameters.

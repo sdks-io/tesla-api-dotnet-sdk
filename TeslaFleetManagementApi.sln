@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeslaFleetManagementApi.Standard", "TeslaFleetManagementApi.Standard/TeslaFleetManagementApi.Standard.csproj", "{4ca48d74-78e2-48bc-9454-a8df9d5ae73b}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeslaFleetManagementApi.Standard", "TeslaFleetManagementApi.Standard/TeslaFleetManagementApi.Standard.csproj", "{d30b7db8-6c3e-4b40-bc53-546723931fe0}"
 EndProject
 Global
     GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,10 +10,10 @@ Global
         Release|Any CPU = Release|Any CPU
     EndGlobalSection
     GlobalSection(ProjectConfigurationPlatforms) = postSolution
-        {4ca48d74-78e2-48bc-9454-a8df9d5ae73b}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-        {4ca48d74-78e2-48bc-9454-a8df9d5ae73b}.Debug|Any CPU.Build.0 = Debug|Any CPU
-        {4ca48d74-78e2-48bc-9454-a8df9d5ae73b}.Release|Any CPU.ActiveCfg = Release|Any CPU
-        {4ca48d74-78e2-48bc-9454-a8df9d5ae73b}.Release|Any CPU.Build.0 = Release|Any CPU
+        {d30b7db8-6c3e-4b40-bc53-546723931fe0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {d30b7db8-6c3e-4b40-bc53-546723931fe0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {d30b7db8-6c3e-4b40-bc53-546723931fe0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {d30b7db8-6c3e-4b40-bc53-546723931fe0}.Release|Any CPU.Build.0 = Release|Any CPU
     EndGlobalSection
     GlobalSection(SolutionProperties) = preSolution
         HideSolutionNode = FALSE

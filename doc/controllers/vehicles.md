@@ -29,7 +29,7 @@ VehiclesController vehiclesController = client.VehiclesController;
 * [Create or Update Fleet Telemetry Configuration](../../doc/controllers/vehicles.md#create-or-update-fleet-telemetry-configuration)
 * [Get Fleet Telemetry Configuration](../../doc/controllers/vehicles.md#get-fleet-telemetry-configuration)
 * [Delete Fleet Telemetry Configuration](../../doc/controllers/vehicles.md#delete-fleet-telemetry-configuration)
-* [Configure Fleet Telemetry Using Signed JWS Token](../../doc/controllers/vehicles.md#configure-fleet-telemetry-using-signed-jws-token)
+* [Configure Fleet Telemetry Using Signed Jws Token](../../doc/controllers/vehicles.md#configure-fleet-telemetry-using-signed-jws-token)
 * [Get Fleet Telemetry Errors for a Vehicle](../../doc/controllers/vehicles.md#get-fleet-telemetry-errors-for-a-vehicle)
 
 
@@ -38,6 +38,12 @@ VehiclesController vehiclesController = client.VehiclesController;
 ```csharp
 ListVehiclesAsync()
 ```
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -52,7 +58,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -71,6 +76,12 @@ GetVehicleAsync(
 |  --- | --- | --- | --- |
 | `vehicleTag` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.Api1VehiclesResponseGetVehicle](../../doc/models/api-1-vehicles-response-get-vehicle.md).
@@ -85,7 +96,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -104,6 +114,12 @@ MobileEnabledAsync(
 |  --- | --- | --- | --- |
 | `vehicleTag` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.Api1VehiclesMobileEnabledResponse](../../doc/models/api-1-vehicles-mobile-enabled-response.md).
@@ -118,7 +134,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -137,6 +152,12 @@ NearbyChargingSitesAsync(
 |  --- | --- | --- | --- |
 | `vehicleTag` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.Api1VehiclesNearbyChargingSitesResponse](../../doc/models/api-1-vehicles-nearby-charging-sites-response.md).
@@ -151,7 +172,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -170,6 +190,12 @@ VehicleLiveDataAsync(
 |  --- | --- | --- | --- |
 | `vehicleTag` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.SiteInfoResponse](../../doc/models/site-info-response.md).
@@ -184,7 +210,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -203,6 +228,12 @@ WakeUpVehicleAsync(
 |  --- | --- | --- | --- |
 | `vehicleTag` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.Api1VehiclesWakeUpResponse](../../doc/models/api-1-vehicles-wake-up-response.md).
@@ -217,7 +248,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -236,6 +266,12 @@ VehicleSpecsAsync(
 |  --- | --- | --- | --- |
 | `vin` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.SiteInfoResponse](../../doc/models/site-info-response.md).
@@ -250,7 +286,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -269,6 +304,12 @@ VehicleOptionsAsync(
 |  --- | --- | --- | --- |
 | `vin` | `string` | Query, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.Api1DxVehiclesOptionsResponse](../../doc/models/api-1-dx-vehicles-options-response.md).
@@ -283,7 +324,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -294,6 +334,12 @@ catch (ApiException e)
 ```csharp
 WarrantyDetailsAsync()
 ```
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -308,7 +354,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -327,6 +372,12 @@ GetAllowedDriversForAVehicleAsync(
 |  --- | --- | --- | --- |
 | `vehicleTag` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.DriversResponse](../../doc/models/drivers-response.md).
@@ -341,7 +392,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -360,6 +410,12 @@ RemoveDriverAccessFromAVehicleAsync(
 |  --- | --- | --- | --- |
 | `vehicleTag` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.SimpleOkResponse](../../doc/models/simple-ok-response.md).
@@ -374,7 +430,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -393,6 +448,12 @@ GetEligibleVehicleSubscriptionsAsync(
 |  --- | --- | --- | --- |
 | `vin` | `string` | Query, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.SiteInfoResponse](../../doc/models/site-info-response.md).
@@ -407,7 +468,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -426,6 +486,12 @@ GetEligibleVehicleUpgradesAsync(
 |  --- | --- | --- | --- |
 | `vin` | `string` | Query, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type [Models.SiteInfoResponse](../../doc/models/site-info-response.md).
@@ -440,7 +506,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -460,6 +525,12 @@ SetEnterprisePayerRolesAsync(
 |  --- | --- | --- | --- |
 | `vin` | `string` | Template, Required | - |
 | `body` | [`EnterprisePayerRequest`](../../doc/models/enterprise-payer-request.md) | Body, Required | - |
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -483,7 +554,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -502,6 +572,12 @@ GetEnterpriseRolesForAVehicleAsync(
 |  --- | --- | --- | --- |
 | `vin` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type object.
@@ -516,7 +592,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -535,6 +610,12 @@ GetFleetStatusForVehiclesAsync(
 |  --- | --- | --- | --- |
 | `body` | [`FleetStatusRequest`](../../doc/models/fleet-status-request.md) | Body, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type object.
@@ -552,7 +633,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -571,6 +651,12 @@ CreateOrUpdateFleetTelemetryConfigurationAsync(
 |  --- | --- | --- | --- |
 | `body` | `object` | Body, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type object.
@@ -585,7 +671,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -604,6 +689,12 @@ GetFleetTelemetryConfigurationAsync(
 |  --- | --- | --- | --- |
 | `vehicleTag` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type object.
@@ -618,7 +709,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -637,6 +727,12 @@ DeleteFleetTelemetryConfigurationAsync(
 |  --- | --- | --- | --- |
 | `vehicleTag` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type object.
@@ -651,13 +747,12 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
 
 
-# Configure Fleet Telemetry Using Signed JWS Token
+# Configure Fleet Telemetry Using Signed Jws Token
 
 ```csharp
 ConfigureFleetTelemetryUsingSignedJwsTokenAsync(
@@ -669,6 +764,12 @@ ConfigureFleetTelemetryUsingSignedJwsTokenAsync(
 | Parameter | Type | Tags | Description |
 |  --- | --- | --- | --- |
 | `body` | [`FleetTelemetryJwsRequest`](../../doc/models/fleet-telemetry-jws-request.md) | Body, Required | - |
+
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
 
 ## Response Type
 
@@ -687,7 +788,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```
@@ -706,6 +806,12 @@ GetFleetTelemetryErrorsForAVehicleAsync(
 |  --- | --- | --- | --- |
 | `vehicleTag` | `string` | Template, Required | - |
 
+## Requires scope
+
+### thirdpartytoken
+
+`energy_cmds`, `energy_device_data`, `enterprise_management`, `offline_access`, `openid`, `user_data`, `vehicle_charging_cmds`, `vehicle_cmds`, `vehicle_device_data`, `vehicle_location`, `vehicle_specs`
+
 ## Response Type
 
 This method returns an [`ApiResponse`](../../doc/api-response.md) instance. The `Data` property of this instance returns the response data which is of type object.
@@ -720,7 +826,6 @@ try
 }
 catch (ApiException e)
 {
-    // TODO: Handle exception here
     Console.WriteLine(e.Message);
 }
 ```

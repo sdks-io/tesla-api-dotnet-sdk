@@ -10,7 +10,7 @@ The following parameters are configurable for the API Client:
 | HttpClientConfiguration | [`Action<HttpClientConfiguration.Builder>`](../doc/http-client-configuration-builder.md) | Action delegate that configures the HTTP client by using the HttpClientConfiguration.Builder for customizing API call settings.<br>*Default*: `new HttpClient()` |
 | LogBuilder | [`LogBuilder`](../doc/log-builder.md) | Represents the logging configuration builder for API calls |
 | BearerAuthCredentials | [`BearerAuthCredentials`](auth/oauth-2-bearer-token.md) | The Credentials Setter for OAuth 2 Bearer token |
-| Oauth2Credentials | [`Oauth2Credentials`](auth/oauth-2-authorization-code-grant.md) | The Credentials Setter for OAuth 2 Authorization Code Grant |
+| ThirdpartytokenCredentials | [`ThirdpartytokenCredentials`](auth/oauth-2-authorization-code-grant.md) | The Credentials Setter for OAuth 2 Authorization Code Grant |
 
 The API client can be initialized as follows:
 
@@ -18,8 +18,10 @@ The API client can be initialized as follows:
 
 ```csharp
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using TeslaFleetManagementApi.Standard;
 using TeslaFleetManagementApi.Standard.Authentication;
+using TeslaFleetManagementApi.Standard.Models;
 
 namespace ConsoleApp;
 
@@ -29,13 +31,21 @@ TeslaFleetManagementApiClient client = new TeslaFleetManagementApiClient.Builder
             "AccessToken"
         )
         .Build())
-    .Oauth2Credentials(
-        new Oauth2Model.Builder(
+    .ThirdpartytokenCredentials(
+        new ThirdpartytokenModel.Builder(
             "OAuthClientId",
             "OAuthClientSecret",
             "OAuthRedirectUri"
         )
+        .OAuthScopes(
+            new List<OAuthScopeThirdpartytoken>
+            {
+                OAuthScopeThirdpartytoken.Openid,
+                OAuthScopeThirdpartytoken.OfflineAccess,
+            })
         .Build())
+    .HttpClientConfig(httpClientConfig =>
+        httpClientConfig.Timeout(TimeSpan.FromSeconds(100)))
     .Environment(TeslaFleetManagementApi.Standard.Environment.Production)
     .LoggingConfig(config => config
         .LogLevel(LogLevel.Information)
@@ -79,7 +89,8 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | PartnerController | Gets PartnerController controller. |
 | UserController | Gets UserController controller. |
 | VehiclesController | Gets VehiclesController controller. |
-| OauthAuthorizationController | Gets OauthAuthorizationController controller. |
+| VehicleCommandsController | Gets VehicleCommandsController controller. |
+| OAuthAuthorizationController | Gets OAuthAuthorizationController controller. |
 
 ### Properties
 
@@ -89,7 +100,7 @@ The gateway for the SDK. This class acts as a factory for the Controllers and al
 | Timeout | Http client timeout. | `TimeSpan` |
 | Environment | Current API environment. | `Environment` |
 | BearerAuthCredentials | Gets the credentials to use with BearerAuth. | [`IBearerAuthCredentials`](auth/oauth-2-bearer-token.md) |
-| Oauth2Credentials | Gets the credentials to use with Oauth2. | [`IOauth2Credentials`](auth/oauth-2-authorization-code-grant.md) |
+| ThirdpartytokenCredentials | Gets the credentials to use with Thirdpartytoken. | [`IThirdpartytokenCredentials`](auth/oauth-2-authorization-code-grant.md) |
 
 ### Methods
 
@@ -110,5 +121,5 @@ Class to build instances of Tesla Fleet Management APIClient.
 | `Timeout(TimeSpan timeout)` | Http client timeout. | `Builder` |
 | `Environment(Environment environment)` | Current API environment. | `Builder` |
 | `BearerAuthCredentials(Action<BearerAuthModel.Builder> action)` | Sets credentials for BearerAuth. | `Builder` |
-| `Oauth2Credentials(Action<Oauth2Model.Builder> action)` | Sets credentials for Oauth2. | `Builder` |
+| `ThirdpartytokenCredentials(Action<ThirdpartytokenModel.Builder> action)` | Sets credentials for Thirdpartytoken. | `Builder` |
 

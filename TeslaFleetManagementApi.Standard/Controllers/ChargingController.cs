@@ -38,10 +38,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.ChargingHistoryResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/dx/charging/history")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  ))
+                  .WithAuth("thirdpartytoken"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -65,10 +62,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<dynamic>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/dx/charging/invoice/{id}")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("id", id).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -89,10 +83,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.ChargingSessionsResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/dx/charging/sessions")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  ))
+                  .WithAuth("thirdpartytoken"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

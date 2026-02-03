@@ -10,15 +10,15 @@ Unofficial OpenAPI specification for Tesla Fleet Management Charging endpoints.
 If you are building with .NET CLI tools then you can also use the following command:
 
 ```bash
-dotnet add package TeslaApiSDK --version 1.0.3
+dotnet add package TeslaApiSDK --version 1.0.4
 ```
 
 You can also view the package at:
-https://www.nuget.org/packages/TeslaApiSDK/1.0.3
+https://www.nuget.org/packages/TeslaApiSDK/1.0.4
 
 ## Initialize the API Client
 
-**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/client.md)
+**_Note:_** Documentation for the client can be found [here.](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/client.md)
 
 The following parameters are configurable for the API Client:
 
@@ -26,10 +26,10 @@ The following parameters are configurable for the API Client:
 |  --- | --- | --- |
 | Environment | `Environment` | The API environment. <br> **Default: `Environment.Production`** |
 | Timeout | `TimeSpan` | Http client timeout.<br>*Default*: `TimeSpan.FromSeconds(100)` |
-| HttpClientConfiguration | [`Action<HttpClientConfiguration.Builder>`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/http-client-configuration-builder.md) | Action delegate that configures the HTTP client by using the HttpClientConfiguration.Builder for customizing API call settings.<br>*Default*: `new HttpClient()` |
-| LogBuilder | [`LogBuilder`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/log-builder.md) | Represents the logging configuration builder for API calls |
-| BearerAuthCredentials | [`BearerAuthCredentials`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/auth/oauth-2-bearer-token.md) | The Credentials Setter for OAuth 2 Bearer token |
-| ThirdpartytokenCredentials | [`ThirdpartytokenCredentials`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/auth/oauth-2-authorization-code-grant.md) | The Credentials Setter for OAuth 2 Authorization Code Grant |
+| HttpClientConfiguration | [`Action<HttpClientConfiguration.Builder>`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/http-client-configuration-builder.md) | Action delegate that configures the HTTP client by using the HttpClientConfiguration.Builder for customizing API call settings.<br>*Default*: `new HttpClient()` |
+| LogBuilder | [`LogBuilder`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/log-builder.md) | Represents the logging configuration builder for API calls |
+| BearerAuthCredentials | [`BearerAuthCredentials`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/auth/oauth-2-bearer-token.md) | The Credentials Setter for OAuth 2 Bearer token |
+| ThirdpartytokenCredentials | [`ThirdpartytokenCredentials`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/auth/oauth-2-authorization-code-grant.md) | The Credentials Setter for OAuth 2 Authorization Code Grant |
 
 The API client can be initialized as follows:
 
@@ -93,49 +93,49 @@ var client = TeslaFleetManagementApiClient
     .FromConfiguration(configuration.GetSection("TeslaFleetManagementApi"));
 ```
 
-See the [Configuration-Based Initialization](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/configuration-based-initialization.md) section for details.
+See the [Configuration-Based Initialization](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/configuration-based-initialization.md) section for details.
 
 ## Authorization
 
 This API uses the following authentication schemes.
 
-* [`bearerAuth (OAuth 2 Bearer token)`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/auth/oauth-2-bearer-token.md)
-* [`thirdpartytoken (OAuth 2 Authorization Code Grant)`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/auth/oauth-2-authorization-code-grant.md)
+* [`bearerAuth (OAuth 2 Bearer token)`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/auth/oauth-2-bearer-token.md)
+* [`thirdpartytoken (OAuth 2 Authorization Code Grant)`](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/auth/oauth-2-authorization-code-grant.md)
 
 ## List of APIs
 
-* [Vehicle Commands](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/controllers/vehicle-commands.md)
-* [Charging](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/controllers/charging.md)
-* [Energy](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/controllers/energy.md)
-* [Partner](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/controllers/partner.md)
-* [User](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/controllers/user.md)
-* [Vehicles](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/controllers/vehicles.md)
+* [Vehicle Commands](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/controllers/vehicle-commands.md)
+* [Charging](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/controllers/charging.md)
+* [Energy](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/controllers/energy.md)
+* [Partner](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/controllers/partner.md)
+* [User](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/controllers/user.md)
+* [Vehicles](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/controllers/vehicles.md)
 
 ## SDK Infrastructure
 
 ### Configuration
 
-* [Configuration-Based Initialization](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/configuration-based-initialization.md)
-* [HttpClientConfiguration](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/http-client-configuration.md)
-* [HttpClientConfigurationBuilder](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/http-client-configuration-builder.md)
-* [LogBuilder](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/log-builder.md)
-* [LogRequestBuilder](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/log-request-builder.md)
-* [LogResponseBuilder](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/log-response-builder.md)
-* [ProxyConfigurationBuilder](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/proxy-configuration-builder.md)
+* [Configuration-Based Initialization](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/configuration-based-initialization.md)
+* [HttpClientConfiguration](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/http-client-configuration.md)
+* [HttpClientConfigurationBuilder](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/http-client-configuration-builder.md)
+* [LogBuilder](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/log-builder.md)
+* [LogRequestBuilder](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/log-request-builder.md)
+* [LogResponseBuilder](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/log-response-builder.md)
+* [ProxyConfigurationBuilder](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/proxy-configuration-builder.md)
 
 ### HTTP
 
-* [HttpCallback](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/http-callback.md)
-* [HttpContext](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/http-context.md)
-* [HttpRequest](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/http-request.md)
-* [HttpResponse](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/http-response.md)
-* [HttpStringResponse](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/http-string-response.md)
+* [HttpCallback](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/http-callback.md)
+* [HttpContext](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/http-context.md)
+* [HttpRequest](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/http-request.md)
+* [HttpResponse](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/http-response.md)
+* [HttpStringResponse](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/http-string-response.md)
 
 ### Utilities
 
-* [ApiException](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/api-exception.md)
-* [ApiResponse](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/api-response.md)
-* [ApiHelper](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/api-helper.md)
-* [CustomDateTimeConverter](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/custom-date-time-converter.md)
-* [UnixDateTimeConverter](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.3/doc/unix-date-time-converter.md)
+* [ApiException](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/api-exception.md)
+* [ApiResponse](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/api-response.md)
+* [ApiHelper](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/api-helper.md)
+* [CustomDateTimeConverter](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/custom-date-time-converter.md)
+* [UnixDateTimeConverter](https://www.github.com/sdks-io/tesla-api-dotnet-sdk/tree/1.0.4/doc/unix-date-time-converter.md)
 

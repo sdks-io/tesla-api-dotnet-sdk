@@ -38,10 +38,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.BackupResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/partner_accounts/fleet_telemetry_error_vins")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  ))
+                  .WithAuth("thirdpartytoken"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -60,10 +57,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.FleetTelemetryErrorsResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/partner_accounts/fleet_telemetry_errors")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  ))
+                  .WithAuth("thirdpartytoken"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -87,10 +81,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.PublicKeyResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/partner_accounts/public_key")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Query(query => query.Setup("domain", domain).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -116,10 +107,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.RegisterPartnerResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/partner_accounts")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Header(header => header.Setup("Content-Type", "application/json"))))

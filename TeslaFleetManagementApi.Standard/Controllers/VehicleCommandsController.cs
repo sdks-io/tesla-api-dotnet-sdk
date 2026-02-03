@@ -47,10 +47,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/actuate_trunk")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())
@@ -82,10 +79,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/add_charge_schedule")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())
@@ -117,10 +111,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/add_precondition_schedule")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())
@@ -152,10 +143,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/adjust_volume")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())
@@ -183,10 +171,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/auto_conditioning_start")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -212,10 +197,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/auto_conditioning_stop")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -241,10 +223,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/cancel_software_update")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -270,10 +249,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/charge_max_range")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -299,10 +275,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/charge_port_door_open")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -328,10 +301,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/charge_port_door_close")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -357,10 +327,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/charge_standard")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -386,10 +353,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/charge_start")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -415,10 +379,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/charge_stop")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -444,10 +405,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/clear_pin_to_drive_admin")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -473,10 +431,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/door_lock")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -502,10 +457,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/door_unlock")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -531,10 +483,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/erase_user_data")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -560,10 +509,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/flash_lights")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -593,10 +539,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/guest_mode")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())
@@ -624,10 +567,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/honk_horn")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -653,10 +593,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CommandResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/vehicles/{vehicle_tag}/command/media_next_fav")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("vehicle_tag", vehicleTag).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);

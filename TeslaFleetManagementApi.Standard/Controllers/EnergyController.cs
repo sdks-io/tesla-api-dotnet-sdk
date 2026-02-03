@@ -48,10 +48,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.BackupResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/backup")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -99,10 +96,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.CalendarHistoryResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/energy_sites/{energy_site_id}/calendar_history")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
                       .Query(query => query.Setup("kind", CoreHelper.JsonSerialize(kind).Trim('\"')))
@@ -149,10 +143,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.ChargeHistoryResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/energy_sites/{energy_site_id}/telemetry_history")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
                       .Query(query => query.Setup("kind", CoreHelper.JsonSerialize(kind).Trim('\"')))
@@ -182,10 +173,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.LiveStatusResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/energy_sites/{energy_site_id}/live_status")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
@@ -215,10 +203,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.GenericUpdateResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/operation")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -250,10 +235,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.GenericUpdateResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/grid_import_export")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body))
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -285,10 +267,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.GenericUpdateResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/off_grid_vehicle_charging_reserve")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -320,10 +299,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.GenericUpdateResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/storm_mode")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -355,10 +331,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.GenericUpdateResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Post, "/api/1/energy_sites/{energy_site_id}/time_of_use_settings")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Body(b => b.Setup(body).Required())
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())
@@ -381,10 +354,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.ProductsResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/products")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  ))
+                  .WithAuth("thirdpartytoken"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -408,10 +378,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.SiteInfoResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/energy_sites/{energy_site_id}/site_info")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  )
+                  .WithAuth("thirdpartytoken")
                   .Parameters(parameters => parameters
                       .Template(template => template.Setup("energy_site_id", energySiteId).Required())))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);

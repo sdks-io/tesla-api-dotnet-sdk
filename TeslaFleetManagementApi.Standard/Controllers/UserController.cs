@@ -38,10 +38,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.BackupResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/users/feature_config")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  ))
+                  .WithAuth("thirdpartytoken"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -60,10 +57,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.MeResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/users/me")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  ))
+                  .WithAuth("thirdpartytoken"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -82,10 +76,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.OrdersResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/users/orders")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  ))
+                  .WithAuth("thirdpartytoken"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
 
         /// <summary>
@@ -104,10 +95,7 @@ namespace TeslaFleetManagementApi.Standard.Controllers
             => await CreateApiCall<Models.RegionResponse>()
               .RequestBuilder(requestBuilder => requestBuilder
                   .Setup(HttpMethod.Get, "/api/1/users/region")
-                  .WithOrAuth(orAuth => orAuth
-                      .Add("thirdpartytoken")
-                      .Add("bearerAuth")
-                  ))
+                  .WithAuth("thirdpartytoken"))
               .ExecuteAsync(cancellationToken).ConfigureAwait(false);
     }
 }

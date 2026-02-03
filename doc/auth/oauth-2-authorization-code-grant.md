@@ -78,7 +78,14 @@ var authManager = client.Oauth2;
 
 try
 {
-    OauthToken token = authManager.FetchToken();
+    var additionalParams = new Dictionary<string, string>
+    {
+        { "oAuthClientId", "OAuthClientId" },
+        { "oAuthClientSecret", "OAuthClientSecret" }
+    };
+
+    OauthToken token = authManager.FetchToken(additionalParams);
+
     // re-instantiate the client with OAuth token
     client = client.ToBuilder()
         .Oauth2Credentials(
@@ -156,6 +163,7 @@ using TeslaFleetManagementApi.Standard.Models;
 using TeslaFleetManagementApi.Standard.Exceptions;
 using TeslaFleetManagementApi.Standard.Authentication;
 using System.Collections.Generic;
+
 namespace OAuthTestApplication
 {
     class Program
@@ -171,20 +179,29 @@ namespace OAuthTestApplication
                     )
                     .Build())
                 .Build();
+
             try
             {
-                OauthToken token = LoadTokenFromDatabase();
+                OAuthToken token = LoadTokenFromDatabase();
 
                 // Set the token if it is not set before
                 if (token == null)
                 {
                     var authManager = client.Oauth2Credentials;
-                    string authUrl = await authManager.BuildAuthorizationUrl();
+                    string authUrl = authManager.BuildAuthorizationUrl();
                     string authorizationCode = GetAuthorizationCode(authUrl);
-                    token = authManager.FetchToken(authorizationCode);
+
+                    var additionalParams = new Dictionary<string, string>
+                    {
+                        { "oAuthClientId", "OAuthClientId" },
+                        { "oAuthClientSecret", "OAuthClientSecret" }
+                    };
+
+                    token = authManager.FetchToken(authorizationCode, additionalParams);
                 }
 
                 SaveTokenToDatabase(token);
+
                 // re-instantiate the client with OAuth token
                 client = client.ToBuilder()
                     .Oauth2Credentials(
@@ -207,13 +224,13 @@ namespace OAuthTestApplication
 
         private static void SaveTokenToDatabase(OAuthToken token)
         {
-            //Save token here
+            // Save token here
         }
 
         private static OAuthToken LoadTokenFromDatabase()
         {
             OAuthToken token = null;
-            //token = Get token here
+            // Get token here
             return token;
         }
     }
